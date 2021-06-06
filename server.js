@@ -2,12 +2,17 @@
 const express = require ('express');
 require('dotenv').config();
 const app = express();
+const db = require('./db')
 
 // when we'll send a request, it will take the information of the body resquest an attached it to the body request
 app.use(express.json())
 
 // get all restaurants
 app.get('/api/v1/restaurants', (request,response) => {
+
+    const result = await db.query('SELECT * FROM restaurants')
+    console.log(result)
+
     response.status(200).json({
         status: 'succes',
         data:{
