@@ -9,7 +9,7 @@ app.use(express.json())
 // get all restaurants
 app.get('/api/v1/restaurants', (request,response) => {
     response.status(200).json({
-        status: 'success',
+        status: 'succes',
         data:{
             restaurants: ['macdo', 'wendys']      
         }
@@ -17,19 +17,39 @@ app.get('/api/v1/restaurants', (request,response) => {
 });
 // get one restaurant
 app.get('/api/v1/restaurants/:id', (request,response) => {
-  console.log(request)
+    response.status(200).json({
+        status: 'succes',
+        data:{
+            restaurants: 'macdo' 
+        }
+    })
 });
 
 // create a restaurant
 app.post('/api/v1/restaurants', (request,response) => {
-    console.log(request.body)
+    response.status(201).json({
+        status: 'succes',
+        data:{
+            restaurants: 'macdo'
+        }
+    })
 });
 // update a restaurant
 app.put('/api/v1/restaurants/:id', (request,response) => {
-    console.log(request.params.id)
-    console.log(request.body)
+    response.status(200).json({
+        status: 'succes',
+    })
 });
-//deleet a restaurant
+//delete a restaurant
+app.delete('/api/v1/restaurants', (request,response) => {
+    response.status(204).json({
+        status: 'succes',
+        data:{
+            restaurants: 'macdo'
+        }
+    })
+});
+
 
 // set up the port
 const port = process.env.PORT || 3001;
