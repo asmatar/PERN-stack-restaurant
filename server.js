@@ -70,13 +70,15 @@ app.put('/api/v1/restaurants/:id', async (request,response) => {
     }
 });
 //delete a restaurant
-app.delete('/api/v1/restaurants', (request,response) => {
-    response.status(204).json({
+app.delete('/api/v1/restaurants/:id', async(request,response) => {
+    try {
+        const results = await db.query('DELETE FROM restaurants WHERE id = $1',[request.params.id]);
+        response.status(204).json({
         status: 'succes',
-        data:{
-            restaurants: 'macdo'
-        }
-    })
+    });
+    } catch (error) {
+        console.log(error)
+    }
 });
 
 
