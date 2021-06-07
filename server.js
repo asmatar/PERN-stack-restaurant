@@ -40,13 +40,19 @@ app.get('/api/v1/restaurants/:id', async (request,response) => {
 });
 
 // create a restaurant
-app.post('/api/v1/restaurants', (request,response) => {
-    response.status(201).json({
+app.post('/api/v1/restaurants', async (request,response) => {
+    try {
+        const results = await db.query('INSERT INTO restaurants (name, location, price) values ($1, $2, $3) RETURNING *', [request.body.name,request.body.location, request.body.price ])
+        console.log(results)
+        response.status(201).json({
         status: 'succes',
         data:{
-            restaurants: 'macdo'
+            restaurants: results.rows[0]
         }
     })
+    } catch (error) {
+        console.log(error)
+    } 
 });
 // update a restaurant
 app.put('/api/v1/restaurants/:id', (request,response) => {
