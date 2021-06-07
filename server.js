@@ -14,7 +14,7 @@ app.get('/api/v1/restaurants', (request,response) => {
     console.log(result)
 
     response.status(200).json({
-        status: 'succes',
+        status: 'success',
         data:{
             restaurants: ['macdo', 'wendys']      
         }
