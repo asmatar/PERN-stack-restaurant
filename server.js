@@ -8,17 +8,20 @@ const db = require('./db')
 app.use(express.json())
 
 // get all restaurants
-app.get('/api/v1/restaurants', (request,response) => {
-
-    const result = await db.query('SELECT * FROM restaurants')
-    console.log(result)
-
+app.get('/api/v1/restaurants', async (request,response) => {
+    try {
+        const results = await db.query('SELECT * FROM restaurants')
+    console.log(results)
     response.status(200).json({
         status: 'success',
+        results: results.rows.length,
         data:{
-            restaurants: ['macdo', 'wendys']      
+            restaurants: results.rows,
         }
     });
+    } catch (error) {
+        console.log(error)
+    } 
 });
 // get one restaurant
 app.get('/api/v1/restaurants/:id', (request,response) => {
