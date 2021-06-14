@@ -6,7 +6,7 @@ const db = require('./db')
 const cors = require('cors');
 const { response } = require('express');
 
-app.use(cors("https://arthur-drl-restaurant.netlify.app/"));
+app.use(cors());
 // when we'll send a request, it will take the information of the body resquest an attached it to the body request
 app.use(express.json())
 

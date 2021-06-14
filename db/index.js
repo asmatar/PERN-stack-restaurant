@@ -4,7 +4,8 @@ const { Pool } = require('pg')
 const pool = new Pool(
   {
     user:'postgres',
-    host:'localhost',
+    // host:'localhost',
+    host:'art-drl-back-rest.netlify.app',
     database:'yelp',
     password:'vanillaninja',
     port: 5432
